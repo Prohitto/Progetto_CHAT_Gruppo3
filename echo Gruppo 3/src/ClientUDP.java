@@ -59,21 +59,24 @@ public class ClientUDP {
 	
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 		
 		String IPaddress;
 		int UDPport;
 		String request , answer="";
 		ClientUDP client;
 		
+		InputStreamReader in = new InputStreamReader(System.in);
+		BufferedReader br =  new BufferedReader(in);
+		
 		IPaddress = "127.0.0.1";		//ip di localhost
-		UDPport = 7;					//porta UDP
-		request = "Hello There";		//messaggio da mandare
+		UDPport = 5000;					//porta UDP
+		request = br.readLine();      	//messaggio da mandare
 		
 		try {
 			client = new ClientUDP();
 			answer = client.sendAndReceive(request, answer, UDPport);
-			System.out.println(request +"\n" +answer);
+			System.out.println("\n" +answer);
 			client.closeSocket();
 			
 		}catch(SocketException exception){
